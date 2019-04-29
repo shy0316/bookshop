@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>管理员主页</title>
+  <link rel="stylesheet" type="text/css" href="css/manage.css">
+</head>
+<body>
+<header>
+  <div class="manage-top-nav">
+    <img src="img/logo.png" class="nav-left-img"/>
+    <div class="nav-right-area"></div>
+  </div>
+</header>
+<section class="left-bar">
+  <ul class="menu">
+    <li class="level1">
+      <a href="#none" id="bookManage">图书管理</a>
+      <ul class="level2">
+        <li><a href="admin_manage_bookAdd.html" id="book_add">增加图书</a></li>
+        <li><a href="admin_manage_bookQuery.html" id="book_query">查询图书</a></li>
+      </ul>
+    </li>
+    <li class="level1">
+	    <a href="#none" id="userManage">用户管理</a>
+	    <ul class="level2">
+	   	 <li><a href="admin_manage_usersQuery.html" id="user_add">用户管理</a></li>
+	    </ul>
+    </li>
+    <li  class="level1" >
+      <a href="#none" id="orderManage">订单管理</a>
+       <ul class="level2">
+	   	 <li><a href="admin_manage_ordersQuery.html" id="order_add">订单管理</a></li>
+	    </ul>
+    </li>
+    <li  class="level1">
+      <a href="#none" id="msgManage">留言管理</a>
+       <ul class="level2">
+	   	 <li><a href="admin_manage_usersMessageQuery.html" id="msg_add">留言管理</a></li>
+	    </ul>
+    </li>
+  </ul>
+</section>
+
+<section class="right-content">
+  欢迎来到管理员中心！！！
+</section>
+</body>
+</html>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/adminUtils.js"></script>

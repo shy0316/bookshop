@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <title>我的地址</title>
+</head>
+<body>
+<div id="bg"></div>
+<header>
+    <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+      <div class="col-md-8 col-sm-8" style="display:inline-block">
+       	 <button style="float:right;margin:5px;" id="searchBtn">搜索</button>
+     	 <input type="text" id="searchBook" style="float:right">
+     	
+      </div>
+      <div style="display:inline-block" class="col-md-3 col-sm-3 col-md-offset-1 clearfix">
+     	<ul id="top-bar"  class="clearfix">
+	        <li><a href="login.html">登录</a></li>
+	        <li><a href="register.html">注册</a></li>
+       </ul> 
+      </div>
+    </div>
+</header>
+
+<nav>
+  <div class="container">
+    <div class="row col-md-12">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header col-md-1">
+            <a class="navbar-brand" href="index.html">
+              <img src="img/logo.png" alt="Logo">
+            </a>
+            <button type="button" class="navbar-toggle collapsed button-collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+          </div>
+          <!-- id 关联上面的折叠 -->
+          <div class="collapse navbar-collapse nav-collapsed-area" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right clearfix">
+              <li><a href="index.html">首页</a></li>
+              <li><a href="category.html">书城</a></li>
+              <li><a href="special.html">特价</a></li>
+              <li><a href="mineInfo.html">我的</a></li>
+              <li><a href="about.html">关于我们</a></li>
+              <li><a href="contact.html">联系我们</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </div>
+  </div>
+  <div class="nav-cart-area">
+    <a href="cart.html"><span class="nav-cart"><img src="img/icon-cart.png"></span></a>
+  </div>
+</nav>
+
+<!--back to top-->
+<p id="back-to-top">
+  <a href="#top"><img src="img/top_arrow1.png"/></a>
+</p>
+
+<section id="mine">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="categrory">
+          <div class="booklist-categrory-top">
+            <div><i class="fa fa-user"></i>&nbsp;&nbsp;个&nbsp;人&nbsp;中&nbsp;心</div>
+          </div>
+          <div class="booklist-categrory-content">
+            <ul class="subnav">
+              <a href="mineInfo.html"><li class="no-select-cat tag " title="文学书" id="mineInfo"><i class="glyphicon glyphicon-info-sign"></i>个人资料</li></a>
+              <a href="mineAccount.html"><li class="no-select-cat tag" title="语言、文字" id="mineAccount"><i class="glyphicon glyphicon-inbox"></i>账户与安全</li></a>
+              <a href="mineAddress.html"><li class="no-select-cat tag activeLI" title="哲学、社会科学" id="mineAddress"><i class="glyphicon glyphicon-home"></i>收货地址管理</li></a>
+              <a href="mineOrders.html"><li class="no-select-cat tag" title="政治、法律" id="mineOrders"><i class="glyphicon glyphicon-sort-by-order"></i>所有订单</li></a>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-md-offset-1" style="margin-bottom: 30px;">
+        <div class="row">
+          <div class="nav-title"><i class="fa fa-home"></i>&nbsp;&nbsp;收货地址管理</div>
+        </div>
+        <br>
+        <div class="row">
+          <div><input type="submit" value="新增收货地址" class="red-btn" id="addNewAddress"></div>
+        </div>
+        <div class="row">
+          <!--循环已有收货地址遍历 样式再次修改 修改對應地址-->
+          <div id="MineAllNew">
+        
+          </div>
+        </div>
+        <!--  点击增加按钮，增加收货地址的div-->
+          <div class="new-address">
+            <div class="circles" >X</div>
+            <div class="mini-form-input">
+              <label>收货人：</label>
+              <input type="text" value="" id="addReciver">
+            </div>
+            
+            <div class="mini-form-input">
+              <label>收货人电话：</label>
+              <input type="text" value="" id="addPhone"  onkeyup="WidthCheck(this,11)">
+            </div>
+            <span class="tip-phone"></span>
+             <div class="mini-form-input " style="display:flex;align-items:center">
+              <label>收货地址：</label>
+              <textarea id="addAddress" style="height:auto;margin-left:10px;" rows="3"></textarea>
+            </div>
+            
+            <div class="mini-form-input">
+              <label>设为默认：</label>
+              <input type="checkbox" id="isDefault">
+            </div>
+           
+            <div class="mini-form-input">
+              <input type="hidden" value="" name="uAddrId">
+              <input type="submit" value="确定" class="add_address_button" name="add">
+            </div>
+          </div>
+          
+          <!-- 修改 -->
+            <div class="edit-address">
+            <div class="circle" >X</div>
+            <div class="mini-form-input">
+              <label>收货人：</label>
+              <input type="text" value="" id="editReciver">
+            </div>
+
+            <div class="mini-form-input" style="display:flex;align-items:center">
+              <label>收货地址：</label>
+              <textarea id="editAddress" style="height:auto;margin-left:10px;" rows="3"></textarea>
+            </div>
+
+            <div class="mini-form-input">
+              <label>收货人电话：</label>
+              <input type="text" value="" id="editPhone"  onkeyup="WidthCheck(this,11)">
+            </div>
+ 			<span class="tip-phone"></span>
+            <div class="mini-form-input">
+              <label>设为默认：</label>
+              <input type="checkbox" id="isEditDefault">
+            </div>
+            <div class="mini-form-input">
+              <input type="hidden" value="" name="uAddrId">
+              <input type="submit" value="确定" class="edit_address_button" name="edit">
+            </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="tip-success-show">
+	<div class="tip-area">
+		<div>
+		<img class="tip-img" src="img/tip_success.png"/>
+		</div>
+		<div class="tip-content">删除成功!</div>
+	</div>
+</div>
+
+<div id="tip-failure-show">
+	<div class="tip-area">
+		<div>
+		<img class="tip-img" src="img/tip_failure.png"/>
+		</div>
+		<div class="tip-content">删除失败!</div>
+	</div>
+</div>
+
+
+<!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="index.html">首页</a></li>
+              <li><a href="category.html">书城</a></li>
+              <li><a href="special.html">特价</a></li>
+              <li><a href="mineInfo.html">我的</a></li>
+              <li><a href="about.html">关于我们</a></li>
+              <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; Design & SHY</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  $(function () {
+	
+	  $("#addPhone").blur(function(){
+	        var phone=$("#addPhone").val();
+	        if(!phone){
+	            $(".tip-phone").html("电话不能为空！");
+	        }else if(!phone.match(/^\d{11}$/)){
+	            $(".tip-phone").html("电话号码必须为11位的数字!");
+	        }
+	    }).focus(function (){
+	        $(".tip-phone").html("");
+	    });
+	  
+	  $("#editPhone").blur(function(){
+	        var phone=$("#editPhone").val();
+	        if(!phone){
+	            $(".tip-phone").html("电话不能为空！");
+	        }else if(!phone.match(/^\d{11}$/)){
+	            $(".tip-phone").html("电话号码必须为11位的数字!");
+	        }
+	    }).focus(function (){
+	        $(".tip-phone").html("");
+	    });
+	  
+    $(".subnav li").hover(function () {
+      $(".subnav li").removeClass("activeLI")
+    },function () {
+      $("#mineAddress").addClass("activeLI")
+    })
+
+      $("#addNewAddress").click(function() {
+    	  $(".new-address #addReciver").val("")
+    	  $(".new-address #addPhone").val("")
+    	  $(".new-address #addAddress").val("")
+          $(".new-address").slideDown();
+          document.getElementById("bg").style.display ="block";
+          $("body").css({overflow:"hidden"})
+      })
+      $(".circles").click(function() {
+          $(".new-address").slideUp();
+          document.getElementById("bg").style.display ="none";
+          $("body").css({overflow:"auto"})
+      })
+      
+      $(".circle").click(function() {
+          $(".edit-address").slideUp();
+          document.getElementById("bg").style.display ="none";
+          $("body").css({overflow:"auto"})
+      })
+      
+      var uAccount = '';
+      getAddressLists()
+
+     
+     //add new address
+	$(".add_address_button").click(function(){
+		if(!$("#addReciver").val()|| !$("#addAddress").val() ||!$("#addPhone").val()){
+			alert('请完善收货地址')
+		}else{
+			if($(".tip-phone").html()){
+				return;
+			}
+			let obj = {
+					'uAddress':$("#addAddress").val(),
+					'oPhone':$("#addPhone").val(),
+					"uIsdefault":$("#isDefault").is(":checked")? 1:0,
+					"oReceiver":$("#addReciver").val()	
+				}
+			$.ajax({
+				url:'userAdress/addUserAddress',
+				type:'post',
+				contentType: "application/json; charset=utf-8",
+				data:JSON.stringify(obj),
+				success:function(data){
+					if(data == "success") {
+						 $("#tip-success-show").css("display", "block")
+					     $(".tip-content").html("添加成功")						 
+						 setTimeout(function(){
+							  $("#tip-success-show").css("display", "none")
+							  $(".new-address").slideUp();
+							  document.getElementById("bg").style.display ="none";
+							  getAddressLists()	
+							  $("body").css({overflow:"auto"})
+						 },2000) 
+					}else {
+						 $(".tip-content").html("添加失败")
+						 $("#tip-failure-show").css("display", "block")
+						 $(".new-address").slideUp();
+						  document.getElementById("bg").style.display ="none";
+						  getAddressLists()	
+						  $("body").css({overflow:"auto"})
+					 }
+			},
+			error:function(){
+				$("#tip-failure-show").css("display", "block")
+				$(".new-address").slideUp();
+				  document.getElementById("bg").style.display ="none";
+				  getAddressLists()	
+				  $("body").css({overflow:"auto"})
+			},
+			})
+		}
+		
+	})
+	 
+	//删除地址
+	$("body").on("click",".delete",function(){
+		let ids = []
+		if (confirm("确认删除该地址")==true){ 
+			let id = $(this).parent().parent().attr('name')
+			ids.push(id)
+			  $.ajax({
+				  url:'userAdress/deleteUserAddress',
+				  type:'post',
+				  data:JSON.stringify({
+					  "ids":ids
+				  }),
+				  contentType: "application/json; charset=utf-8",
+				  success:function(data){
+					  if(data.indexOf("success")!=-1) {
+						  	 $(".tip-content").html("删除成功")
+							 $("#tip-success-show").css("display", "block")
+							  setTimeout(function(){
+								 $("#tip-success-show").css("display", "none")
+								 getAddressLists()	
+							 },2000) 
+						}else {
+							 $(".tip-content").html("删除失败")
+							 $("#tip-failure-show").css("display", "block")
+							  setTimeout(function(){
+								 $("#tip-success-show").css("display", "none")
+								 getAddressLists()	
+							 },2000)
+						 }
+					},
+					error:function(){
+						 $(".tip-content").html("删除失败")
+						 $("#tip-failure-show").css("display", "block")
+						  setTimeout(function(){
+							 $("#tip-success-show").css("display", "none")
+							 getAddressLists()	
+						 },2000)
+					}
+			  
+			  }) 
+			 }else{ 
+			  return false; 
+			 } 
+	})
+	var editId ;
+	//修改地址
+		$("body").on("click",".edit",function(){
+			document.getElementById("bg").style.display ="block";
+			 $("body").css({overflow:"hidden"})
+			editId = $(this).parent().parent().attr('name')
+			$("#editReciver").val($(this).parent().siblings().eq(0).find('.oReceiver').html())
+			$("#editAddress").val($(this).parent().siblings().eq(1).find('.uAddress').html())
+			$("#editPhone").val($(this).parent().siblings().eq(2).find('.oPhone').html())
+			if($(this).parent().siblings().eq(3).find('.isEditDefault').html() == '是'){
+				$("#isEditDefault").attr('checked',true)
+			}else{
+				$("#isEditDefault").attr('checked',false)
+			}
+			$(".edit-address").slideDown();
+		
+	})
+	  
+	  $("body").on('click','.edit_address_button',function(){
+		if(!$("#editReciver").val()|| !$("#editAddress").val() ||!$("#editPhone").val()){
+			alert('请完善收货地址')
+			return;
+		}else{
+			if($(".tip-phone").html()){
+				return;
+			}
+		  $.ajax({
+			  url:'userAdress/updateUserAddress',
+			  type:'post',
+			  data:JSON.stringify({
+				  "uaddrId":editId,
+				  'uAddress':$("#editAddress").val(),
+				  'oPhone':$("#editPhone").val(),
+				  "uIsdefault":$("#isEditDefault").is(":checked")? 1:0,
+				  "oReceiver":$("#editReciver").val()	
+			  }),
+			  contentType: "application/json; charset=utf-8",
+			  success:function(data){
+				  if(data.indexOf("success")!=-1) {
+					  $(".tip-content").html("修改成功")
+						 $("#tip-success-show").css("display", "block")
+						  setTimeout(function(){
+							 $("#tip-success-show").css("display", "none")
+							 $(".edit-address").slideUp();
+				  			 document.getElementById("bg").style.display ="none";
+				  			  $("body").css({overflow:"auto"})
+				  			 getAddressLists()
+						 },2000) 
+					}else {
+						 $(".tip-content").html("修改失败")
+						 $("#tip-failure-show").css("display", "block")
+						  setTimeout(function(){
+							 $("#tip-success-show").css("display", "none")
+							 $(".edit-address").slideUp();
+				  			document.getElementById("bg").style.display ="none";
+				  		  $("body").css({overflow:"auto"})
+				  			getAddressLists()
+						 },2000)
+					 }
+			  },
+			  error:function(){
+				  $(".tip-content").html("修改失败")
+				  $("#tip-failure-show").css("display", "block")
+				  setTimeout(function(){
+					 $("#tip-success-show").css("display", "none")
+					 $(".edit-address").slideUp();
+		  			document.getElementById("bg").style.display ="none";
+		  		  $("body").css({overflow:"auto"})
+		  			getAddressLists()
+				 },2000)
+			  }
+		  
+		  }) 
+		}
+		
+	})
+      
+  })
+    function getAddressLists(){
+    	 $.ajax({
+ 			url:'user/getUsersInfo',
+ 			type:'get',
+ 			success:function(data){
+ 			  if(data.uAccount){
+ 				  uAccount = data.uAccount
+ 				  $.ajax({
+ 			    	  url:"userAdress/userAddressQry",
+ 			    	  type:'get',
+ 			    	  data:{
+ 			    		  uAccount:uAccount
+ 			    	  },
+ 			    	  success:function(data){
+ 			    		  if(data.userAdressList &&data.userAdressList.length){
+ 			    			  var html = ''
+ 			    			  $("#MineAllNew").html('')
+ 			    			  $.each(data.userAdressList,function(index,adata){
+ 				    			 if(adata['uIsdefault'] == 0) {
+ 				    				 adata['uIsdefault'] = '否'
+ 				    			 }
+ 				    			 if(adata['uIsdefault'] == 1) {
+ 				    				 adata['uIsdefault'] = '是'
+ 				    			 }
+ 				    			 
+ 						    	  html += "  <div class=\"exist-address\" name="+adata['uaddrId']+">"
+ 						    	  html +="<div class=\"mini-form-input\"><label>收货人：</label><span class=\"oReceiver\">"+adata['oReceiver']+"</span></div>"
+ 						    	  html +="<div class=\"mini-form-input\"><label>收货地址：</label><span class=\"uAddress\">"+adata['uAddress']+"</span></div>"
+ 						    	  html +="<div class=\"mini-form-input\"><label>收货人电话：</label><span class=\"oPhone\">"+adata['oPhone']+"</span></div>"  
+ 				    		 	  html +="<div class=\"mini-form-input\"><label>是否默认：</label><span class=\"isEditDefault\">"+adata['uIsdefault']+"</span></div></br>"
+ 				    		  	  html +="<div class=\"mini-form-input\"> <input type=\"button\" value=\"修改\" class=\"edit\"><input type=\"button\" value=\"删除\" class=\"delete\"></div></div>"
+ 				    		  })
+ 				    		  $("#MineAllNew").html(html)
+ 			    		  }else{
+ 			    			 $("#MineAllNew").html("<div style=\"display:flex;justify-content:center;height:100px;align-items:center\">暂无收货地址，请添加！</div>")
+ 			    		  }
+ 			    	  }
+ 			      })
+ 			  }
+ 		}
+ 	})
+    }
+
+</script>

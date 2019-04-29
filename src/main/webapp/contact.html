@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>联系我们</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="css/login.css" rel="stylesheet" />
+</head>
+<body>
+<header>
+    <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+      <div class="col-md-8 col-sm-8" style="display:inline-block">
+       	 <button style="float:right;margin:5px;font-size:14px;" id="searchBtn">搜索</button>
+     	 <input type="text" id="searchBook" style="float:right">
+     	
+      </div>
+      <div style="display:inline-block" class="col-md-3 col-sm-3 col-md-offset-1 clearfix">
+     	<ul id="top-bar"  class="clearfix">
+	        <li><a href="login.html">登录</a></li>
+	        <li><a href="register.html">注册</a></li>
+       </ul> 
+      </div>
+    </div>
+</header>
+<nav>
+  <div class="container">
+    <div class="row col-md-12">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header col-md-1">
+            <a class="navbar-brand" href="index.html">
+              <img src="img/logo.png" alt="Logo">
+            </a>
+            <button type="button" class="navbar-toggle collapsed button-collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+          </div>
+          <!-- id 关联上面的折叠 -->
+          <div class="collapse navbar-collapse nav-collapsed-area" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right clearfix">
+              <li><a href="index.html">首页</a></li>
+              <li><a href="category.html">书城</a></li>
+              <li><a href="special.html">特价</a></li>
+              <li><a href="mineInfo.html">我的</a></li>
+              <li><a href="about.html">关于我们</a></li>
+              <li><a href="contact.html">联系我们</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="nav-cart-area">
+   <a href="cart.html"><span class="nav-cart"><img src="img/icon-cart.png"></span></a>
+  </div>
+</nav>
+
+
+<!--back to top-->
+<p id="back-to-top">
+  <a href="#top"><img src="img/top_arrow1.png"/></a>
+</p>
+
+<!-- Wrapper Start -->
+<section id="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-sm-12">
+        <div class="block">
+          <div class="section-title">
+            <h2>联系我们</h2>
+            <p>  如果你有任何的疑问，可以联系我们、或者你对我们有任何的意见，请联系我们，如果你的意见着实对我们有了帮助，我们会有礼品送给你。或者你对我们的网站有更好建议，也请联系我们，我们会认真考虑您给我们的建议。
+            </p>
+          </div>
+           <div class="form_row">
+             <label class="contact"><strong>姓名:</strong></label>
+             <input type="text" class="contact_input" id="contact_name" />
+           </div>  
+           
+           <div class="form_row">
+              <label class="contact"><strong>留言:</strong></label>
+              <textarea class="contact_textarea" id="contact_msg"  rows="6" style="margin-left:0px;width:100%"></textarea>
+           </div>
+           <div class="form_row">
+              <button class="contact" id="contact_btn" style="width:100px;height:38px;font-size:14px;">发送</button>                    
+           </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-sm-12">
+        <div class="block">
+          <img src="img/wrapper-img.jpg" alt="Img">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+              <li><a href="index.html">首页</a></li>
+              <li><a href="category.html">书城</a></li>
+              <li><a href="special.html">特价</a></li>
+              <li><a href="mineInfo.html">我的</a></li>
+              <li><a href="about.html">关于我们</a></li>
+              <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; Design & SHY</p>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
+
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/utils.js"></script>
+<script>
+var uAccount,uMessage;
+$(function(){
+	$("#contact_btn").click(function(){
+		uAccount = $("#contact_name").val();
+		uMessage = $("#contact_msg").val();
+		if(uAccount && uMessage){
+			$.ajax({
+				url:'userMessage/addUserMessage',
+				type:'post',
+				data:JSON.stringify({
+					"uAccount":uAccount,
+					"uMessage":uMessage
+				}),
+				contentType: "application/json; charset=utf-8",
+				success:function(data){
+					if(data == 'success'){
+						alert("留言成功")
+					}
+				}
+			})
+		}else{
+			alert("请完善留言信息！！！")
+		}
+	})
+
+	
+})
+</script>

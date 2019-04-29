@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>管理员-图书查询</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/manage.css">
+   <style>
+  #bg {
+        display: none;
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: 1001;
+        -moz-opacity: 0.7;
+        opacity: .70;
+        filter: alpha(opacity=70);
+        }
+        
+  input[type='file'] {
+    position: absolute;
+    font-size: 100px;
+    left: 110px;
+    top: 10px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.alone-ul li {
+	display:block;
+	width:100%;
+}
+  </style>
+</head>
+<body>
+<div id="bg"></div>
+<header>
+  <div class="manage-top-nav">
+    <img src="img/logo.png" class="nav-left-img"/>
+    <span class="nav-right-area"></span>
+  </div>
+</header>
+
+<section class="left-bar">
+  <ul class="menu">
+    <li class="level1">
+      <a href="#none" id="bookManage">图书管理</a>
+      <ul class="level2">
+        <li><a href="admin_manage_bookAdd.html" id="book_add">增加图书</a></li>
+        <li><a href="admin_manage_bookQuery.html" id="book_query">查询图书</a></li>
+      </ul>
+    </li>
+    <li class="level1">
+	    <a href="#none" id="userManage">用户管理</a>
+	    <ul class="level2">
+	   	 <li><a href="admin_manage_usersQuery.html" id="user_add">用户管理</a></li>
+	    </ul>
+    </li>
+    <li  class="level1" >
+      <a href="#none" id="orderManage">订单管理</a>
+       <ul class="level2">
+	   	 <li><a href="admin_manage_ordersQuery.html" id="order_add">订单管理</a></li>
+	    </ul>
+    </li>
+    <li  class="level1">
+      <a href="#none" id="msgManage">留言管理</a>
+       <ul class="level2">
+	   	 <li><a href="admin_manage_usersMessageQuery.html" id="msg_add">留言管理</a></li>
+	    </ul>
+    </li>
+  </ul>
+</section>
+<iframe  id="submitFrame" style="display: none;width:0; height:0" name="submitFrame"  src="about:blank"></iframe>
+<!-- 修改弹框按钮 -->
+<div id="div2">
+  <div class="circles" >X</div>
+  <form id="editForm" action="books/updateBooks" method="post" enctype="multipart/form-data" target="submitFrame">
+  	<input type="text" name="bId" value="" style="display:none"><!--隐藏bId框  -->
+    <div class="mini-form-input">
+      <label>图书名称：</label>
+      <input type="text" class="book_input" name="bName" value="" id="b_name">
+    </div>
+    
+     <div class="mini-form-input upload" style=" position: relative;padding:10px 0px;">
+      <label>图书图片：</label>
+      <!-- <input type="file" class="book_input" name="bName" value=""> -->
+      <img src="img/default-cover.png" style="width:50px;height:50px;margin-left:5px;"  onclick="$('input[id=book]').click();" id="book_pic" >
+      <input type="file" id="book" name="bookPic" onchange="showPreview(this)" style="display:none">
+      <div class="file_name" style="color:#000;z-index:1006;"></div>
+    </div>
+    
+    <div class="mini-form-input">
+    <div style="display:flex;align-items:center">
+     <label>图书描述：</label>
+      <textarea rows="10" name="bDescription" id="b_description" class="book_input mini-input-textarea" style="padding:5px 15px;height:100px;width:280px;"></textarea>
+       
+    </div>
+     
+     <!--  <input type="text" class="book_input" name="bDescription" id="b_description" value=""> -->
+    </div>
+
+    <div class="mini-form-input">
+      <label>图书价格：</label>
+      <input type="text" class="book_input" name="bPrice" id="b_price" value="">
+    </div>
+
+    <div class="mini-form-input">
+      <label>图书折扣：</label>
+      <input type="text" class="book_input" name="bDiscount" id="b_discount" value="">
+    </div>
+
+    <div class="mini-form-input">
+      <label>图书作者：</label>
+      <input type="text" class="book_input" name="bAuthor" value="" id="b_author">
+    </div>
+
+    <div class="mini-form-input">
+      <label>图书出版社：</label>
+      <input type="text" class="book_input" name="bPress" value="" id="b_press">
+    </div>
+
+    <div class="mini-form-input">
+      <label>出版时间：</label>
+      <input type="date" class="book_input" name="bPressTime" value="" id="b_presstime">
+    </div>
+
+    <div class="mini-form-input">
+      <label>图书服务：</label>
+      <input type="text" class="book_input" name="bService" value="" id="b_service">
+    </div>
+    <div class="mini-form-input">
+      <input type="button" value="提交" name="submitButton" onclick= "checkForm()" style="margin-top:15px;margin-bottom:10px;">
+    </div>
+
+  </form>
+
+</div>
+
+<section class="right-content">
+  <div>
+    <span class="title"><i class="glyphicon glyphicon-search"></i>图书查询</span>
+  </div>
+  <div class="search_nav">
+    <select name="search_con" id="search_con">
+      <option>请选择搜索类型</option>
+      <option value="b_name" selected="selected">书名</option>
+      <option value="b_press">出版社</option>
+      <option value="b_author">作者</option>
+      <option value="b_category">书目类别</option>
+    </select>
+    <input type="text" name="search_input" id="search_input" >
+    <input type="submit" value="搜索" id="search_button" name="searchButton">
+  </div>
+
+ <div class="book_lists"> </div>
+ 
+<div style="display:flex;width:100%;justify-content:flex-end">
+<input type="checkbox" id="selectAll"/> 全选
+<input type="button" class="cart-multiDelete" value="多条删除"> 
+</div>
+
+  <div class="row papigation">
+     <span class="papigation-button" onclick="toPage('index')">首页</span>
+     <span class="papigation-button" onclick="toPage('prev')">上一页</span>
+     <span class="papigation-button" onclick="toPage('next')">下一页</span>
+     <span class="papigation-button" onclick="toPage('end')">尾页</span>
+     <span class="papigationPage">第1页／共8页</span>
+     <span>设置每页&nbsp;<input type="text" id="pageSize" style="width: 30px;">&nbsp;条</span>
+</div>
+
+</section>
+<div id="tip-success-show-admin">
+	<div class="tip-area">
+		<div>
+		<img class="tip-img" src="img/tip_success.png"/>
+		</div>
+		<div class="tip-content">删除成功!</div>
+	</div>
+</div>
+
+<div id="tip-failure-show-admin">
+	<div class="tip-area">
+		<div>
+		<img class="tip-img" src="img/tip_failure.png"/>
+		</div>
+		<div class="tip-content">删除失败!</div>
+	</div>
+</div>
+</body>
+</html>
+<script src="js/jquery-1.7.min.js"></script>
+<script src="js/jquery.form.js"></script>
+<script>
+  
+  $(function(){
+    $("#bookManage").addClass("current").next().show()
+    $("#book_query").addClass("subliCurrent")
+    document.getElementsByTagName('textarea')[0].onkeyup = function () {
+    var value = this.value,
+    
+        allLine = value.split('\n'),
+        lastLine = allLine.pop();
+  if (lastLine.length >= 20) {
+      lastLine = lastLine.substr(0, 20) + '\n' + lastLine.substr(20);
+      allLine.push(lastLine)
+      this.value = allLine.join('\n');
+  }
+    }
+  })
+    
+</script>
+<script src="js/adminUtils.js"></script>
+<script src="js/adminBookQuery.js"></script>

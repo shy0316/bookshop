@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <title>购物车</title>
+</head>
+<body>
+<header>
+    <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+      <div class="col-md-8 col-sm-8" style="display:inline-block">
+       	 <button style="float:right;margin:5px;" id="searchBtn">搜索</button>
+     	 <input type="text" id="searchBook" style="float:right">
+     	
+      </div>
+      <div style="display:inline-block" class="col-md-3 col-sm-3 col-md-offset-1 clearfix">
+     	<ul id="top-bar"  class="clearfix">
+	        <li><a href="login.html">登录</a></li>
+	        <li><a href="register.html">注册</a></li>
+       </ul> 
+      </div>
+    </div>
+</header>
+<nav>
+  <div class="container">
+    <div class="row col-md-12">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header col-md-1">
+            <a class="navbar-brand" href="index.html">
+              <img src="img/logo.png" alt="Logo">
+            </a>
+            <button type="button" class="navbar-toggle collapsed button-collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+          </div>
+          <!-- id 关联上面的折叠 -->
+          <div class="collapse navbar-collapse nav-collapsed-area" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right clearfix">
+              <li><a href="index.html">首页</a></li>
+              <li><a href="category.html">书城</a></li>
+              <li><a href="special.html">特价</a></li>
+              <li><a href="mineInfo.html">我的</a></li>
+              <li><a href="about.html">关于我们</a></li>
+              <li><a href="contact.html">联系我们</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </div>
+  </div>
+  <div class="nav-cart-area">
+    <a href="cart.html"><span class="nav-cart"><img src="img/icon-cart.png"></span></a>
+  </div>
+</nav>
+
+<!--back to top-->
+<p id="back-to-top">
+  <a href="#top"><img src="img/top_arrow1.png"/></a>
+</p>
+
+<section id="booklist">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="categrory">
+          <div class="booklist-categrory-top">
+            <div><i class="fa fa-list"></i>&nbsp;&nbsp;图&nbsp;书&nbsp;分&nbsp;类</div>
+          </div>
+          <div class="booklist-categrory-content">
+            <ul class="">
+              <a href="category.html?category=a" ><li><i class="glyphicon glyphicon-eye-open"></i>马列主义、毛泽东思想(A)</li></a>
+              <a href="category.html?category=b" ><li><i class="glyphicon glyphicon-bookmark"></i>哲学(B)</li></a>
+              <a href="category.html?category=c" ><li><i class="glyphicon glyphicon-book"></i>社会科学(C)</li></a>
+              <a href="category.html?category=d"><li><i class="glyphicon glyphicon-text-width"></i>政治、法律(D)</li></a>
+              <a href="category.html?category=e"><li><i class="glyphicon glyphicon-fire"></i>军事(E)</li></a>
+              <a href="category.html?category=f"><li><i class="glyphicon glyphicon-asterisk"></i>经济(F)</li></a>
+              <a href="category.html?category=g"><li><i class="glyphicon glyphicon-globe"></i>文化、科学、教育、体育(G)</li></a>
+              <a href="category.html?category=h"><li><i class="glyphicon glyphicon-leaf"></i>语言、文字(H)</li></a>
+              <a href="category.html?category=i"><li><i class="glyphicon glyphicon-user"></i>文学(I)</li></a>
+              <a href="category.html?category=j"><li><i class="glyphicon glyphicon-pushpin"></i>艺术(J)</li></a>
+              <a href="category.html?category=k"><li><i class="glyphicon glyphicon-paperclip"></i>历史、地理(K)</li></a>
+              <a href="category.html?category=n"><li><i class="glyphicon glyphicon-usd"></i>自然科学总论(N)</li></a>
+              <a href="category.html?category=o"><li><i class="glyphicon glyphicon-map-marker"></i>数理科学和化学(O)</li></a>
+              <a href="category.html?category=p"><li><i class="glyphicon glyphicon-hand-right"></i>天文学、地球科学(P)</li></a>
+              <a href="category.html?category=q"><li><i class="glyphicon glyphicon-pushpin"></i>生物科学(Q)</li></a>
+              <a href="category.html?category=r"><li><i class="glyphicon glyphicon-paperclip"></i>医药、卫生(R)</li></a>
+              <a href="category.html?category=s"><li><i class="glyphicon glyphicon-usd"></i>农业科学(S)</li></a>
+              <a href="category.html?category=t"><li><i class="glyphicon glyphicon-map-marker"></i>工业科学(T)</li></a>
+              <a href="category.html?category=u"><li><i class="glyphicon glyphicon-hand-right"></i>交通运输(U)</li></a>
+              <a href="category.html?category=v"><li><i class="glyphicon glyphicon-usd"></i>航空、航天(V)</li></a>
+              <a href="category.html?category=x"><li><i class="glyphicon glyphicon-map-marker"></i>环境科学(X)</li></a>
+              <a href="category.html?category=z"><li><i class="glyphicon glyphicon-hand-right"></i>综合性图书(Z)</li></a>
+      		</ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-md-offset-1">
+        <div class="row">
+          <div class="nav-title"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;购物车</div>
+        </div>
+        <div class="row">
+            <table border="1" class="cart-table" id="cart-table">
+            <thead>
+              <tr class="cart_title">
+                <th><input type="checkbox" name="book-select" class="selectAll" id="selectAll"></th>
+                <th>图片</th>
+                <th>书名</th>
+                <th>原单价</th>
+                <th>折后价</th>
+                <th>数量</th>
+                <th>总价</th>
+                <th>操作</th>
+        	</tr>
+			</thead>
+			<tbody id="table_body">
+			</tbody>
+			<tfoot>
+              <tr class="sum_total">
+                <td colspan="7" class="cart_total"><span class="cart-red">实付(不含运费)</span></td>
+                <td class="ac_money">0</td>
+              </tr>
+			</tfoot>
+            </table>
+            <input class="cart-multiDelete" type="button" value="多条删除">
+            <input class="cart-submit" type="submit" value="下单 &gt;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <div class="row papigation">
+          <span class="papigation-button" onclick="toPage('index')">首页</span>
+          <span class="papigation-button" onclick="toPage('prev')">上一页</span>
+          <span class="papigation-button" onclick="toPage('next')">下一页</span>
+          <span class="papigation-button" onclick="toPage('end')">尾页</span>
+          <span class="papigationPage">第1页／共8页</span>
+          <span>设置每页&nbsp;<input type="text" id="pageSize" style="width: 30px;">&nbsp;条</span>
+</div>
+
+<!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+           	<li><a href="index.html">首页</a></li>
+            <li><a href="category.html">书城</a></li>
+            <li><a href="special.html">特价</a></li>
+            <li><a href="mine.html">我的</a></li>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; Design & SHY</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/cart.js"></script>

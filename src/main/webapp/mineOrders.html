@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <title>我的订单</title>
+</head>
+<body>
+<header>
+    <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+      <div class="col-md-8 col-sm-8" style="display:inline-block">
+       	 <button style="float:right;margin:5px;" id="searchBtn">搜索</button>
+     	 <input type="text" id="searchBook" style="float:right">
+     	
+      </div>
+      <div style="display:inline-block" class="col-md-3 col-sm-3 col-md-offset-1 clearfix">
+     	<ul id="top-bar"  class="clearfix">
+	        <li><a href="login.html">登录</a></li>
+	        <li><a href="register.html">注册</a></li>
+       </ul> 
+      </div>
+    </div>
+</header>
+
+<nav>
+  <div class="container">
+    <div class="row col-md-12">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header col-md-1">
+            <a class="navbar-brand" href="index.html">
+              <img src="img/logo.png" alt="Logo">
+            </a>
+            <button type="button" class="navbar-toggle collapsed button-collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+          </div>
+          <!-- id 关联上面的折叠 -->
+          <div class="collapse navbar-collapse nav-collapsed-area" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right clearfix">
+              <li><a href="index.html">首页</a></li>
+              <li><a href="category.html">书城</a></li>
+              <li><a href="special.html">特价</a></li>
+              <li><a href="mineInfo.html">我的</a></li>
+              <li><a href="about.html">关于我们</a></li>
+              <li><a href="contact.html">联系我们</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </div>
+  </div>
+  <div class="nav-cart-area">
+    <a href="cart.html"><span class="nav-cart"><img src="img/icon-cart.png"></span></a>
+  </div>
+</nav>
+
+<!--back to top-->
+<p id="back-to-top">
+  <a href="#top"><img src="img/top_arrow1.png"/></a>
+</p>
+
+<section id="mine">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="categrory">
+          <div class="booklist-categrory-top">
+            <div><i class="fa fa-user"></i>&nbsp;&nbsp;个&nbsp;人&nbsp;中&nbsp;心</div>
+          </div>
+          <div class="booklist-categrory-content">
+            <ul class="subnav">
+              <a href="mineInfo.html"><li class="no-select-cat tag " title="文学书" id="mineInfo"><i class="glyphicon glyphicon-info-sign"></i>个人资料</li></a>
+              <a href="mineAccount.html"><li class="no-select-cat tag" title="语言、文字" id="mineAccount"><i class="glyphicon glyphicon-inbox"></i>账户与安全</li></a>
+              <a href="mineAddress.html"><li class="no-select-cat tag" title="哲学、社会科学" id="mineAddress"><i class="glyphicon glyphicon-home"></i>收货地址管理</li></a>
+              <a href="mineOrders.html"><li class="no-select-cat tag activeLI" title="政治、法律" id="mineOrders"><i class="glyphicon glyphicon-sort-by-order"></i>所有订单</li></a>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-md-offset-1">
+        <div class="row">
+          <div class="nav-title"><i class="glyphicon glyphicon-sort-by-order"></i>&nbsp;&nbsp;所有订单</div>
+        </div>
+        <div class="row" id="mine_order_lists">
+         
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+ <div class="row papigation">
+    <span class="papigation-button" onclick="toPage('index')">首页</span>
+    <span class="papigation-button" onclick="toPage('prev')">上一页</span>
+    <span class="papigation-button" onclick="toPage('next')">下一页</span>
+    <span class="papigation-button" onclick="toPage('end')">尾页</span>
+    <span class="papigationPage">第1页／共8页</span>
+    <span>设置每页&nbsp;<input type="text" id="pageSize" style="width: 30px;">&nbsp;条</span>
+</div>
+
+<div id="tip-success-show">
+	<div class="tip-area">
+		<div>
+		<img class="tip-img" src="img/tip_success.png"/>
+		</div>
+		<div>删除成功!</div>
+	</div>
+</div>
+
+<div id="tip-failure-show">
+	<div class="tip-area">
+		<div>
+		<img class="tip-img" src="img/tip_failure.png"/>
+		</div>
+		<div>删除失败!</div>
+	</div>
+</div>
+
+<!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="index.html">首页</a></li>
+              <li><a href="category.html">书城</a></li>
+              <li><a href="special.html">特价</a></li>
+              <li><a href="mineInfo.html">我的</a></li>
+              <li><a href="about.html">关于我们</a></li>
+              <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; Design & SHY</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+var totalPage,currpage,limit
+  $(function () {
+    $(".subnav li").hover(function () {
+      $(".subnav li").removeClass("activeLI")
+    },function () {
+      $("#mineOrders").addClass("activeLI")
+    })
+    getLists()
+    $("body").on('click','.order_delete',function() {
+    	var obj = {
+			'ids':[$(this).parent().attr('name')]
+		}
+    	var r=confirm("确定删除该订单记录？")
+   	  	if (r==true)
+   	       {
+	    	$.ajax({
+				url:'orders/deleteOrders',
+				contentType: "application/json; charset=utf-8",
+				type:'post',
+				data:JSON.stringify(obj),
+				success:function(data){
+					console.log(data)
+					if(data.indexOf("success") != -1){
+						 $("#tip-success-show").css("display", "block")
+						  setTimeout(function(){
+							  $("#tip-success-show").css("display", "none")
+							  getLists()
+						 },2000) 
+					 }else {
+						 $("#tip-failure-show").css("display", "block")
+						 setTimeout(function(){
+							 $("#tip-failure-show").css("display", "none")
+							 getLists()
+						 },2000) 
+					 }
+				},
+				error:function(){
+					 $("#tip-failure-show").css("display", "block")
+					 setTimeout(function(){
+						 $("#tip-failure-show").css("display", "none")
+					 },2000) 
+				}
+			}) 
+   	      }
+	})
+  })
+  function getLists(page,limit){
+		if(!page) {
+			page = 1
+		}
+		if(!limit) {
+			limit = 10
+		}
+		$.ajax({
+	    	url:'orders/ordersQry',
+	    	type:'post',
+	    	data:{ 
+	    		"page": page,
+	    		"limit": limit
+	    	},
+	    	success:function(data){
+	    		if(!data.orderList.length) {
+	    			$("#mine_order_lists").html("<br><br>暂无购买记录！")
+	    			return;
+	    		}
+	    		 totalPage = data.pageInfo.pages
+	    		  limit = data.pageInfo.pageSize
+	    		  currpage = data.pageInfo.pageNum
+	    		  $(".papigationPage").html("第"+currpage+"页/共"+totalPage+"页")
+	    		var html = ""
+	    		$.each(data.orderList,function(index,odata){
+	    	    		html += " <div class=\"order-container\">"
+	    	    		html += " <div class=\"order-top\">"
+	    	    		html += "<div class=\"order-top-left\">"
+	    	    		html += "<div>订单编号：<span>"+odata['oId']+"</span></div>"
+	    	    		html += "<div>订单时间：<span>"+odata['oTime']+"</span></div>"
+	    	    		html += " <div>收货人：<span>"+odata['uReceiver']+"</span></div></div>"
+	    	    		html += "<div class=\"order-top-right\"><div>等待付款</div></div></div>"
+	    	    		html += "<div class=\"order-content\"><div class=\"order-content-detail\">"
+	    	    		$.each(odata.orderDetailsList,function(index,ddata){
+	    	    			html += "<div class=\"detail-list-item\">"
+	    	    	    	html += "<img src=\"/book_images/"+ddata['bPic']+"\">"
+	    	    	    	html += "<span class=\"order-content-detail-bookname\">"+ddata['bName']+"</span>"
+	    	    			html +="<div class=\"order-content-detail-right\">"
+	    	    			html += " <span class=\"order-content-detail-bookprice\">"+ddata['bSumdiscountprice']+"</span>"
+	    	    			html += "<span class=\"order-content-detail-bookoldprice\">"+ddata['bSumprice']+"</span>"
+	    	    			html += "<span class=\"order-content-detail-booknum\">"+ddata['bNums']+"</span>"
+	    	    			html += "</div> </div>"
+	    	    			html +=" <div class=\"clear\"></div>"
+	    	    		})
+	    	    		html +="</div> </div>"
+	    	    		html +=" <div class=\"order-bottom\">"
+	    	    		html += "<div name="+odata['oId']+"><input type=\"submit\" value=\"删除\" class=\"pass_button order_delete\"></div>"
+	                	html += "<div>共"+odata['oNum']+"件商品&nbsp;&nbsp;合计：¥"+odata['oPrice']+"</div></div></div> "
+	                
+	    	    	})
+	    	    	$("#mine_order_lists").html(html)
+	    	}
+	    })
+	}
+	
+	function toPage(str) {
+			console.log(str)
+			if(str == "index"){
+				getLists(1,limit)
+			}
+			if(str == "end") {
+				getLists(totalPage,limit)
+			}
+			if(str == "prev"){
+				if(currpage>1) {
+					getLists(currpage-1,limit)
+				}else {
+					alert("已经是第一页")
+					getLists(1,limit)
+				}
+				
+			}
+			if(str == "next") {
+				if(currpage < totalPage) {
+					getLists(currpage+1,limit)
+				}else {
+					alert("已经是最后一页")
+					getLists(totalPage,limit)
+				}
+			}
+		}
+	
+	//是否为正整数  
+  	function isPositiveNum(s){
+    var re = /^[0-9]*[1-9][0-9]*$/ ;  
+    return re.test(s)  
+	} 
+	
+  	$("#pageSize").blur(function(){
+  		var size = $("#pageSize").val()
+  		if(isPositiveNum(size)) {
+  			limit = Number(size)
+  	  		getLists(1,limit)
+  		}else {
+  			alert("请输入大于0的整数值")
+  		}
+  	})
+</script>
+<script src="js/utils.js"></script>

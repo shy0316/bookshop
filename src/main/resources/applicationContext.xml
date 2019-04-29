@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+<!-- 用于指导Spring工厂进行Bean生产、依赖关系注入（装配）及Bean实例分发 -->
+	<aop:aspectj-autoproxy expose-proxy="true" />
+	<!-- 使用@Autowired注解，必须事先在Spring容器中声明AutowiredAnnotationBeanPostProcessor的Bean：
+<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor "/>
+	但使用<context:annotation-config /> 隐式向spring容器注册了atuowiredAnnotationBeanPostProcessor的bean等
+	用于激活那些已经在spring容器里注册过的bean
+ -->
+	<context:annotation-config />
+<!-- 用注解来向spring注册bean -->
+<!-- 另外，使用注解时一般都会配置扫描包路径选项 
+	 <context:component-scan>除了具有<context:annotation-config>的功能之外(所以可以不写)，
+	 <context:component-scan>还可以在指定的package下扫描以及注册javabean 。
+ -->
+	<context:component-scan base-package="com.bookshop.*" />
+
+	<!-- *************************************mybatis配置文件****************************** -->
+	 <!-- 读取数据库配置文件信息 -->
+	<!-- <context:property-placeholder location="classpath:jdbc.properties"/>
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc.properties" />
+	</bean> -->
+	<!-- 1.配置数据源 -->
+	<bean id="mysqlSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/bookshop"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="123456"></property>
+		<!-- 初始连接数 default 0 -->
+		<property name="initialSize" value="5" />
+		<!-- 可以同时从该连接池分配的最大活动连接数 default 8 -->
+		<property name="maxTotal" value="10" />
+		<!-- 在池中可以保持空闲的最大数量 default 8 -->
+		<property name="maxIdle" value="10" />
+		<!-- 保持空闲的最小连接数 default0 -->
+		<property name="minIdle" value="2" />
+		<!-- 抛出异常钱的最大等待时间 default 无限期 -->
+		<property name="maxWaitMillis" value="6000" />
+	</bean>
+
+	<!-- 创建session工厂 基础mybatis中，用SqlSessionFactoryBuilder来创建  -->
+	<!-- 都是先获取一个Sqlsession对象，然后再从Sqlsession里获取Mapper对象
+	（再次强调Mapper是一个代理对象，它代理的是mapperInterface接口，
+	而这个接口是用户提供的dao接口）。自然，最终注入到业务层就是这个Mapper对象。 -->
+	<bean name="mySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="mysqlSource"></property>
+		<property name="mapperLocations" value="classpath:com/bookshop/mapper/*.xml" />
+		<!-- pageHelper配置文件 -->
+		<property name="configLocation" value="classpath:mybatisPageHelper.xml" />
+	</bean>
+
+	<!-- dao接口所在包名，Spring自动查找下面的类 查找映射器   通过扫描器的方式自动加载mapper  -->
+	<!-- 代替手工使用SqlSessionDaoSupport或SqlSessionTemplate编写数据访问对象(DAO)的代码,使用动态代理实现。
+	xxx.dao是一个接口
+	MapperScannerConfigurer查找类路径下的映射器并自动将它们创建成MapperFactoryBean
+	自动扫描 将Mapper接口生成代理注入到Spring
+	 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.bookshop.dao"></property>
+		<property name="sqlSessionFactory" ref="mySqlSessionFactory"></property>
+	</bean>
+
+	<!-- 配置spring的PlatformTransactionManager，名字为默认值 -->
+	<!-- <bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mysqlSource" />
+	</bean> -->
+	
+	<!-- 开启事务控制的注解支持 -->  
+    <!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
+
+</beans>
